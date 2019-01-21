@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        title Students
+        link(href='/css/bootstrap.min.css' rel='stylesheet')
+        link(rel='stylesheet' href='/css/custom.css')
+        link(rel="shortcut icon" href="img/apro.ico")
+        link(rel='stylesheet' type='text/css' href='/css/style.css')
+    body
+        
+        br
+        br
+        
+        .row
+            .col-lg-4
+                .container
+                  .container
+                    
+                        .price-tag
+                            img(src=courses_info.url width='85%' style='padding-top:50px')
+                        p.text-uppercase.price-title.pb-2   Coures name : #{courses_info.name}
+                        p.text-uppercase.price-title.pb-2 Coures teacher :  #{courses_info.teacher}  
+                        p.text-uppercase.price-title.pb-2 Coures duree : #{courses_info.duree} 
+                        div !{courses_info.describtion}
+                        br
+                        br
+                           
+            .col-lg-8
+              .container
+                .container
+                    h2 Register In This Cours
+                    br
+                    form(method="POST",action="/register")
+                        .form-row
+                            .col
+                                label(for='exampleInputEmail1') First name
+                                input.form-control(type='text' placeholder='First name' name="name")
+                            .col
+                                label(for='exampleInputEmail1') Last name
+                                input.form-control(type='text' placeholder='Last name' name="last")
+
+                        .form-group
+                            label(for='exampleInputEmail1') Email address
+                            input#exampleInputEmail1.form-control(type='email' aria-describedby='emailHelp' placeholder='Enter email' name="email")
+                        .form-group
+                            label(for='exampleInputPassword1') Phone Number
+                            input#exampleInputPassword1.form-control(type='text' placeholder='Phone Number' name="phone")
+                        .form-group(style="display:none")
+                            label(for="") cours id
+                            input.form-control(type='text' name="cours_id" id="cours_id" value=courses_info._id)
+                        button.btn.btn-primary(type='submit') Submit
+
+                
+                                

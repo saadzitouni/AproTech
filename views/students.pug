@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        title Students 
+
+        link(href='/css/bootstrap.min.css' rel='stylesheet')
+        link#theme-stylesheet(rel='stylesheet' href='/css/style.default.css')
+        link(rel='stylesheet' type='text/css' href='/css/style.css')
+        link(rel='stylesheet' href='/css/custom.css')
+        link(rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous")
+        link(rel="shortcut icon" href="/img/apro.ico")
+    body
+          .row
+            .col-lg-12
+                .card
+                  .card-header.d-flex.align-items-center
+                    h3.h4 Students Table 
+                     a(href="" id="button") (Download This table)  
+                  .card-body
+                    .table-responsive
+                        table.table#mytable
+                            thead
+                            tr
+                                th #
+                                th First Name
+                                th Last Name
+                                th Email
+                                th Phone
+                                th
+                            tbody
+                                each apro,i in apros
+                                    tr
+                                        td=i+1
+                                        td=apro.First_name
+                                        td=apro.Last_name
+                                        td=apro.Email
+                                        td=apro.Phone
+                                        td
+                                          i(class="fas fa-trash-alt delete" data-id=apro._id)
+
+    script(src="/js/jquery.min.js")
+    script(src="/js/xlsx.js")
+    script(src="/js/xlsx.download.js")
+    script(src='/js/student-delete.js')  
+
+                                

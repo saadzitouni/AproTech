@@ -1,0 +1,210 @@
+doctype html
+head
+  meta(charset='utf-8')
+  meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  title Dashboard
+  meta(name='description' content='')
+  meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+  meta(name='robots' content='all,follow')
+  // Bootstrap CSS
+  link(rel='stylesheet' href='/css/bootstrap.min.css')
+  
+  // Fontastic Custom icon font
+  link(rel='stylesheet' href='/css/fontastic.css')
+  
+  link#theme-stylesheet(rel='stylesheet' href='/css/style.default.css')
+  // Custom stylesheet - for your changes
+  link(rel='stylesheet' href='/css/custom.css')
+  // Favicon
+  link(rel='shortcut icon' href='img/apro.ico')
+  link(rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous")
+  link(rel='stylesheet' type='text/css' href='css/style.css')
+
+  // Tweaks for older IEs
+  //if lt IE 9
+    script(src='https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js')
+    script(src='https://oss.maxcdn.com/respond/1.4.2/respond.min.js')
+.page
+  .page-content.d-flex.align-items-stretch
+    // Side Navbar
+    nav.side-navbar
+        // Sidebar Header
+        // Sidebar Navidation Menus
+        ul.list-unstyled
+          li.active
+            a(href='index.html')
+              i.icon-home
+              | Home
+          li
+              a(href='/logout')
+                i.icon-home
+                | Logout
+        
+    .content-inner
+      // Page Header
+      section.dashboard-counts.no-padding-bottom
+        .container-fluid
+          .row.bg-white.has-shadow
+            // Item
+            .col-xl-4.col-sm-6.popup_btn
+              .item.d-flex.align-items-center(style="cursor:pointer")
+                .icon.bg-violet
+                  i(class="fas fa-user-plus" style="font-size:20px;margin-left:5px")
+                .title
+                  span
+                    | New
+                    br
+                    | Student
+
+                
+            // Item
+            .col-xl-4.col-sm-6.cours_popup
+              .item.d-flex.align-items-center(style="cursor:pointer")
+                .icon.bg-green
+                  i(class="fas fa-book" style="font-size:20px;margin-top:10px")
+                .title
+                  span
+                    | New
+                    br
+                    | Cours
+                  
+            // Item
+            .col-xl-4.col-sm-6.logout
+              .item.d-flex.align-items-center(style="cursor:pointer")
+                .icon.bg-red(style="text-align:center")
+                  i(class="fas fa-sign-out-alt" style="font-size:22px;margin-top:10px")
+                .title
+                  span
+                    | Log
+                    br
+                    | out
+                  
+
+      
+          br
+          .row
+            .col-lg-12
+                .card
+                  .card-header.d-flex.align-items-center
+                    h3.h4 Cours Table
+                  .card-body
+                    .table-responsive
+                      table.table
+                        thead
+                          tr
+                            th #
+                            th Cours Name
+                            th Cours Teacher
+                            th Duree
+                            th 
+                            th
+                        tbody
+                          each course,i in courses
+                            tr(class="tr",id=course._id)
+                              td(class="nuber")=i+1
+                              td(class="name")=course.name
+                              td(class="teacher")=course.teacher
+                              td(class="duree")=course.duree
+                              td
+                                i(class="fas fa-trash-alt delete" data-id=course._id)
+                              td  
+                                i(class="fas fa-edit edite cours_edite" data-id=course._id data-name=course.name data-code=course.code data-teacher=course.teacher data-duree=course.duree data-url=course.url data-describtion=course.describtion )
+                                
+ 
+
+      #myModal.modal
+        
+        .modal-content.dash
+          span.close &times;
+          br
+          form(method="POST",action="/register2")
+            .form-row
+              .col
+                  label(for='exampleInputEmail1') First name
+                  input.form-control(type='text' placeholder='First name' name="name")
+              .col
+                  label(for='exampleInputEmail1') Last name
+                  input.form-control(type='text' placeholder='Last name' name="last")
+
+            .form-group
+              label(for='exampleInputEmail1') Email address
+              input#exampleInputEmail1.form-control(type='email' aria-describedby='emailHelp' placeholder='Enter email' name="email")
+            .form-group
+              label(for='exampleInputPassword1') Phone Number
+              input#exampleInputPassword1.form-control(type='text' placeholder='Phone Number' name="phone")
+            .form-group
+              label Cours Name
+              select.form-control(name="cours_id")
+                 each course in courses
+                  option(selected disabled hidden) select course
+                  option(id=course._id)=course.name
+            button.btn.btn-primary(type='submit') Submit
+
+      #myModal2.modal
+        .modal-content.dash
+            span.close &times;
+            br
+            form(method="POST",action="/newcours")
+              .form-row
+                .col
+                    label Course name
+                    input.form-control(type='text' placeholder='First name' name="name")
+                .col
+                    label Course code
+                    input.form-control(type='text' placeholder='Course code' name="code")
+
+              .form-group
+                label Course teacher
+                input.form-control(type='text'  placeholder='teacher name' name="teacher")
+              .form-group
+                label Course logo
+                input.form-control(type='text'  placeholder='Enter logo url' name="url")
+              .form-group
+                label duree
+                input.form-control(type='text' placeholder='Phone Number' name="duree")
+              .form-group
+                  <label for="comment">Describtion</label>
+                  <textarea class="form-control" rows="5" id="comment" name="describtion"></textarea>
+              
+              button.btn.btn-primary(type='submit') Submit
+      #myModal3.modal
+        .modal-content.dash
+            span.close &times;
+            br
+            form(method="POST",action="/edite")
+              
+              .form-row
+                .col
+                    label Course name
+                    input.form-control(type='text' id="name" placeholder='First name' name="name")
+                .col
+                    label Course code
+                    input.form-control(type='text' id="code" placeholder='Course code' name="code")
+
+              .form-group
+                label Course teacher
+                input.form-control(type='text' id="teacher" placeholder='teacher name' name="teacher")
+              .form-group
+                label Course logo
+                input.form-control(type='text' id="url" placeholder='Enter logo url' name="url")
+              .form-group
+                label duree
+                input.form-control(type='text' id="duree" placeholder='Phone Number' name="duree")
+              .form-group
+                  <label for="comment">Describtion</label>
+                  <textarea class="form-control" rows="5" id="comment" name="describtion"></textarea>
+              .form-group
+                input.form-control(type='text'  name="id" id="id")
+              button.btn.btn-primary(type='submit') Submit        
+
+
+// Main File
+
+script(src='js/popup.js')
+script(src='js/requests.js')
+
+
+
+
+
+  

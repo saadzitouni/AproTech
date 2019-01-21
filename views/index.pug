@@ -1,0 +1,265 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1')
+  title Aprotech Academy
+  meta(name='description' content='')
+  meta(name='keywords' content='')
+  meta(name='author' content='')
+  <link rel="shortcut icon" href="img/apro.ico">
+  link(rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css' integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU' crossorigin='anonymous')
+  link(rel='stylesheet' href='css/mdb.min.css')
+  // Bootstrap core CSS
+  link(href='css/bootstrap.min.css' rel='stylesheet')
+  // Magnific popup
+  link(rel='stylesheet' type='text/css' href='css/magnific-popup.css')
+  // Material Icon
+  link(rel='stylesheet' type='text/css' href='css/materialdesignicons.min.css')
+  // Pe Icon  css
+  // Slider
+  link(rel='stylesheet' href='css/owl.carousel.css')
+  link(rel='stylesheet' href='css/owl.theme.css')
+  link(rel='stylesheet' href='css/owl.transitions.css')
+  // MENU CUSTOM css
+  link(rel='stylesheet' type='text/css' href='css/menu.css')
+  // CUSTOM  CSS
+  link(rel='stylesheet' type='text/css' href='css/our-clinet.css')
+  link(rel='stylesheet' type='text/css' href='css/style.css')
+// Navigation Bar
+header#topnav.defaultscroll.fixed-top.sticky
+  .container
+    // Logo container
+    div
+      a.logo(href='/')
+        // image logo
+        img(src='img/logo.png' width="150" alt='logo' style='height: 55px;')
+    // End Logo container
+    .menu-extras
+      .menu-item
+        // Mobile menu toggle
+        a.navbar-toggle
+          .lines
+            span
+            span
+            span
+        // End mobile menu toggle
+    #navigation
+      // Navigation Menu
+      ul.navigation-menu
+        li.has-submenu.active
+          a(href='/') Home
+        li.has-submenu
+          a(href='#courses') Our Courses
+        li.has-submenu
+          a(href='#about') About
+        li.has-submenu
+          a(href='#contact') Contact
+      // End navigation menu
+// HOME STRAT
+section#home.section.bg-home.height-100
+  .bg-overlay
+  .home-center
+    .home-desc-center
+      .container.home
+        .row
+          .col-md-12.text-center
+            p.text-center.home-title
+              | APROTECH,Pratical IT
+            p.text-center.pt-3.home-sub-title
+              | Together We Empower The Next Generation of IT
+// HOME END
+  
+
+           
+.section.text-center.pb-0              
+  .customer-logos.ourclinte
+    .slide
+      img(src='img/ielts.png')
+    .slide
+      img(src='img/cisco.png')
+    .slide
+      img(src='img/office.png' )
+    .slide
+      img(src='img/microsoft.png' )
+    .slide
+      img(src='img/redhat.png')
+    .slide
+      img(src='img/ceh.png' )
+  
+section#courses.section
+  .container
+    .row.justify-content-center.pb-10.text-center
+      .col-md-6
+        h4.text-uppercase.title Our Courses
+    .row
+        each course in courses
+          .col-md-4.col-lg-3
+            .pricing-table.text-center
+              .price-tag
+                img(src=course.url width='85%' style='padding-top:50px')
+              p.text-uppercase.price-title.pb-2=course.name
+              .price-desc
+                a(href="/cour_"+course._id) More info
+                
+                .pt-3
+                  a.btn.btn-round.btn-outline.text-uppercase.popup_btn(id=course._id) Join Now
+    
+                       
+// End pricing
+// About START
+section#about.section
+  .container
+    .row.justify-content-center
+      .col-md-8.text-center
+        h4.text-uppercase.title About Us 
+        p.about-desc.mt-5
+          | Lorem hjkfhkjghjk ghjk gjgjg elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoqu Provide contextual feedback messages for typical user actions with.
+// About END
+#myModal.modal
+  // Modal content
+  .modal-content
+    span.close &times;
+    br
+    form(method="POST",action="/register")
+      .form-row
+        .col
+            label(for='exampleInputEmail1') First name
+            input.form-control(type='text' placeholder='First name' name="name" required)
+        .col
+            label(for='exampleInputEmail1') Last name
+            input.form-control(type='text' placeholder='Last name' name="last" required)
+
+      .form-group
+        label(for='exampleInputEmail1') Email address
+        input#exampleInputEmail1.form-control(type='email' aria-describedby='emailHelp' placeholder='Enter email' name="email" required)
+      .form-group
+        label(for='exampleInputPassword1') Phone Number
+        input#exampleInputPassword1.form-control(type='text' placeholder='Phone Number' name="phone")
+      .form-group(style="display:none")
+        label(for="") cours id
+        input.form-control(type='text' name="cours_id" id="cours_id" )
+      button.btn.btn-primary(type='submit') Submit
+// CONTACT FORM START
+
+.row
+  section#contact.section.col-md-12.section-no-padding
+    .container
+      .row.justify-content-center.pb-5.text-center
+        .col-md-12
+          h4.text-uppercase.title Contact
+          p=msg
+      .custom-form.mt-1
+        #message
+        form#contact-form(method='post' action="/send")
+         
+          .row
+            .col-md-4
+               .form-group
+                label(for='name') Name
+                input#name.form-control(name='name' type='text' placeholder='Your name...')
+            .col-md-4
+              .form-group
+                label(for='email') Email address
+                input#email.form-control(name='email' type='email' placeholder='Your email...')
+            .col-md-4
+              .form-group
+                label(for='subject') Subject
+                input#subject.form-control(type='text'  name='subject' placeholder='Your Subject..')
+          .row
+            .col-md-12
+              .form-group
+                label(for='comments') Message
+                textarea#comments.form-control(name='text' rows='4' placeholder='Your message...')
+          .row
+            .col-sm-12.text-right
+              input#submit.submitBnt.btn.btn-primary.btn-custom(type='submit' name='send' value='Send Message')
+              #simple-msg
+        // /form
+  // CONTACT FORM END
+  // map section
+
+
+  #map.col-md-12
+// end  map section
+// FOOTER START
+// Footer
+footer.page-footer.font-small.mdb-color.pt-4
+  // Footer Links
+  .container.text-center.text-md-left
+    // Footer links
+    .row.text-center.text-md-left.mt-3.pb-3
+      // Grid column
+      .col-md-3.col-lg-3.col-xl-3.mx-auto.mt-3
+        h6.text-uppercase.mb-4.font-weight-bold AproTech
+        p
+          | Here you can use rows and columns here to organize your footer content. Lorem ipsum dolor sit amet, consectetur
+          | adipisicing elit.
+      // Grid column
+      hr.w-100.clearfix.d-md-none
+      hr.w-100.clearfix.d-md-none
+      // Grid column
+      // Grid column
+      hr.w-100.clearfix.d-md-none
+      // Grid column
+      .col-md-4.col-lg-3.col-xl-3.mx-auto.mt-3
+        h6.text-uppercase.mb-4.font-weight-bold Contact
+        p
+          i.fa.fa-home.mr-3
+          |  New York, NY 10012, US
+        p
+          i.fa.fa-envelope.mr-3
+          |  info@gmail.com
+        p
+          i.fa.fa-phone.mr-3
+          |  + 01 234 567 88
+        p
+          i.fa.fa-print.mr-3
+          |  + 01 234 567 89
+      // Grid column
+    // Footer links
+    hr
+    // Grid row
+    .row.d-flex.align-items-center
+      // Grid column
+      .col-md-7.col-lg-8
+        // Copyright
+        p.text-center.text-md-left
+          | &copy; 2018 Copyright:
+          a(href='https://mdbootstrap.com/education/bootstrap/')
+            strong  Aorotech.com
+      // Grid column
+      // Grid column
+      .col-md-5.col-lg-4.ml-lg-0
+        
+      // Grid column
+    // Grid row
+  // Footer Links
+// Footer
+// END FOOTER
+// JAVASCRIPTS
+
+script(src='js/popper.min.js')
+script.
+  var map;
+  var aprotech=  {lat: 34.662923, lng: 3.261020};
+  function initMap() {
+  map = new google.maps.Map(document.getElementById('map'), {
+  center:aprotech,
+  zoom: 15
+  });
+  var marker = new google.maps.Marker({
+  position: aprotech,
+  map: map
+  });
+  }
+script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDQqmOhq_xEpsQiNh0yFd7sjCdj5VHoRpA&callback=initMap')
+script(src='js/jquery.min.js')
+script(src='js/bootstrap.min.js')
+script(src='js/ourpartners.js')
+script(src='js/slick.js')
+script(src='js/isotope.js' type='text/javascript')
+script(src='js/owl.carousel.min.js' type='text/javascript')
+script(src='js/scrollspy.min.js' type='text/javascript')
+script(src='js/app.js' type='text/javascript')
+script(src='js/popup.js' type='text/javascript')
+
