@@ -11,7 +11,7 @@ require('./passport')(passport);
 
 mongoose.connect('mongodb://abderrahman:abderrahman123@ds121624.mlab.com:21624/apro');
 //mongoose.connect('mongodb://localhost:27017/apro');
-const port = process.env.PORT;
+const port = process.env.PORT || 8080;
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
